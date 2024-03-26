@@ -16,13 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app1.views import UserListCreateAPIView
-
+from app1.views import UserListCreateAPIView, delete_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('app1/', include('app1.urls')),
-    path('app1/users/<int:user_id>/', UserListCreateAPIView.as_view(),
-         name='user-details'),  
+    path('app1/users/', UserListCreateAPIView.as_view()),
+    path('app1/users/<int:user_id>/', UserListCreateAPIView.as_view(), name='user-details'),
+    path('app1/users/<int:user_id>/delete/', delete_user, name='delete-user'),
 ]
