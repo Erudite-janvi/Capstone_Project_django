@@ -1,15 +1,13 @@
 from django.db import models
 
-# Create your models here.
-
 
 class login(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    username = models.CharField(max_length=13, default='', unique=True)
+
+    username = models.CharField(max_length=15, primary_key=True)
     first_name = models.CharField(max_length=10)
     last_name = models.CharField(max_length=10)
     phone_number = models.CharField(max_length=10)
-    password = models.CharField(max_length=12)
+    password = models.CharField(max_length=20)
 
-    def __str__(self) -> str:
-        return self.first_name + self.last_name
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
