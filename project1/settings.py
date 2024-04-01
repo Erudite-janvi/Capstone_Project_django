@@ -87,6 +87,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'project1.wsgi.application'
+# settings.py
+APPEND_SLASH = False
 
 
 # Database
