@@ -5,15 +5,13 @@ from .models import login
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 from django.http import Http404
-from django.contrib import messages
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
+
 
 class UserListCreateAPIView(APIView):
     permission_classes = [AllowAny]
 
-    # @method_decorator(csrf_exempt)
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
@@ -87,6 +85,7 @@ def registration_view(request):
         return render(request, 'registration.html', {'error_message': error_message})
     else:
         return render(request, 'registration.html')
+
 
 @csrf_exempt
 def login_view(request):
