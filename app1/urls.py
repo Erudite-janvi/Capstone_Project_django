@@ -4,7 +4,8 @@ from .views import registration_view, login_view
 
 
 urlpatterns = [
-    path('post/', UserListCreateAPIView.as_view()),
+    
+    path('api/post/', UserListCreateAPIView.as_view(),name='post'),
     path('api/', UserListCreateAPIView.as_view(), name='user-list-create'),
     path('<str:username>/', UserListCreateAPIView.as_view(), name='user-details'),
     path('<str:username>/delete/',
