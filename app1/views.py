@@ -58,6 +58,7 @@ class UserListCreateAPIView(APIView):
             return Response({"error": "Username not provided"}, status=status.HTTP_400_BAD_REQUEST)
 
 
+@csrf_exempt
 def registration_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
