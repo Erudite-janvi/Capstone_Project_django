@@ -88,8 +88,27 @@ def registration_view(request):
         return render(request, 'registration.html')
 
 
+from django.contrib import messages
+
 @csrf_exempt
 def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if all([username, password]):
+            try:
+                user = login.objects.get(username=username)
+                if user.password == password:
+                    messages.success(request, f'Welcome {username}! Login successful.')
+                    return render(request, 'login.html')
+                else:
+                    messages.error(request, 'Incorrect password.')
+            except login.DoesNotExist:
+                messages.error(request, 'User does not exist.')
+        else:
+            messages.error(request, 'All fields are required.')
+
     return render(request, 'login.html')
 
 

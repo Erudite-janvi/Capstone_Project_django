@@ -12,5 +12,6 @@ urlpatterns = [
          UserListCreateAPIView.as_view(), name='delete-user'),
     path('app1/register/', registration_view, name='registration'),
     path('app1/login/', login_view, name='login'),
+    path('app1/loginsucces/', login_view),
 
 ]
