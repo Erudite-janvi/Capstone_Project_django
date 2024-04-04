@@ -7,7 +7,7 @@ from rest_framework.permissions import AllowAny
 from django.http import Http404
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-
+from django.contrib import messages
 
 class UserListCreateAPIView(APIView):
     permission_classes = [AllowAny]
@@ -77,7 +77,7 @@ def registration_view(request):
                     password=password
                 )
                 success_message = 'Registration successful. Please log in.'
-                return render(request, 'registration.html', {'success_message': success_message})
+                return render (request, 'registration.html', {'success_message': success_message})
             except Exception as e:
                 error_message = f'Error during registration: {str(e)}'
         else:
@@ -88,7 +88,6 @@ def registration_view(request):
         return render(request, 'registration.html')
 
 
-from django.contrib import messages
 
 @csrf_exempt
 def login_view(request):
@@ -114,3 +113,6 @@ def login_view(request):
 
 def home_view(request):
     return render(request, 'home.html')
+
+def login_success(request):
+    return render(request, 'login_success.html')

@@ -16,10 +16,24 @@
         .container {
             max-width: 400px;
             margin: 100px auto;
-            padding: 40px;
             border-radius: 10px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .left {
+            flex: 1;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .right {
+            padding:  4px 40px;
+            box-sizing: border-box;
+            text-align: center;
         }
 
         h2 {
@@ -62,12 +76,8 @@
             background-color: #0056b3;
         }
 
-        .register-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-
         .register-link a {
+            text-align: end;
             color: #007bff;
             text-decoration: none;
         }
@@ -78,43 +88,37 @@
         }
     </style>
 </head>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        
-    </style>
-</head>
 
 <body>
     <div class="container">
-        <h2>Login</h2>
-        {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                   <span>{{ message }}</span>
-                {% endfor %}
-                <p></p>
-            </div>
-        {% endif %}
-        <form id="loginForm" method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Login</button>
-        </form>
+        <div class="left">
+            <h2>Login</h2>
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                       <span>{{ message }}</span>
+                    {% endfor %}
+                    <p></p>
+                </div>
+            {% endif %}
+            <form id="loginForm" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div class="right">  
+            <P> Don't have a Account .</P>
+                <a href="{% url 'registration' %}">Register</a>
+        </div>
     </div>
 </body>
 
 </html>
- 
